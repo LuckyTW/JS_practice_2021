@@ -374,24 +374,115 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 GOOD LUCK 😀
 */
 
-//1.
+// //1.
 
-for (const [i, player] of game.scored.entries()) {
-  console.log(`Goal ${i + 1}: ${player}`);
-}
+// for (const [i, player] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}: ${player}`);
+// }
 
-//2.
-const odds = Object.values(game.odds);
-let average = 0;
+// //2.
+// const odds = Object.values(game.odds);
+// let average = 0;
 
-for (let el of odds) average += el;
-average /= odds.length;
-console.log(average);
+// for (let el of odds) average += el;
+// average /= odds.length;
+// console.log(average);
 
-//3.
-for (const [team, odd] of Object.entries(game.odds)) {
-  // 배열의 경우는 entries뒤에 ()만 넣어줌
-  // console.log(team, odd);
-  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-  console.log(`Odd of ${teamStr} ${odd}`);
-}
+// //3.
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   // 배열의 경우는 entries뒤에 ()만 넣어줌
+//   // console.log(team, odd);
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr} ${odd}`);
+// }
+
+// //sets
+// // element가 유니크함
+
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+
+// console.log(ordersSet);
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pizza'));
+// console.log(new Set('Lucky'));
+
+// ordersSet.add('Garlic Bread');
+// ordersSet.add('Garlic Bread');
+// ordersSet.delete('Risotto');
+// console.log(ordersSet);
+
+// //셋에는 index가 없음. 배열처럼 불러오기 못함
+
+// for (const order of ordersSet) console.log(order);
+
+// //Example
+
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// const staffUniq = [...new Set(staff)];
+// console.log(staffUniq);
+
+// console.log(
+//   new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+// );
+
+// console.log(new Set('jonasschmedtmann').size);
+
+// //Maps
+
+// const rest = new Map();
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// console.log(rest.set(2, 'Lisbon, Portugal'));
+
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'we are open')
+//   .set(false, 'we are closed');
+
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest);
+
+// const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// rest.set([1, 2], 'test');
+// console.log(rest);
+// console.log(rest.size);
+
+// //여러개를 한꺼번에 set하는 방법
+
+// const question = new Map([
+//   ['question', 'what is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'Javascript'],
+//   ['correct', 3],
+//   [true, 'correct!'],
+//   [(false, 'try again!')],
+// ]);
+
+// console.log(question);
+
+// //Quiz app
+
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+// const answer = Number(prompt('Your answer'));
+// console.log(answer);
+
+// console.log(question.get(question.get('correct') === answer));
