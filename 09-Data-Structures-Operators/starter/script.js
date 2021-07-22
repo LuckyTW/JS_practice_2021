@@ -450,7 +450,7 @@ GOOD LUCK 😀
 
 // console.log(rest.get('name'));
 // console.log(rest.get(true));
-// console.log(rest);
+// // console.log(rest);
 
 // const time = 21;
 // console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
@@ -486,3 +486,89 @@ GOOD LUCK 😀
 // console.log(answer);
 
 // console.log(question.get(question.get('correct') === answer));
+
+// //Working with Strings
+
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// //array와 유사한 methods
+// console.log('B373'[0]);
+// console.log(airline.length);
+// console.log('B383'.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('portugal')); // case sensitive!
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7)); //마지막껀 포함 안시킴, 두번째 숫자에서 처음 숫자를 뺀 값 => length of string
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// console.log(airline.slice(1, -1)); //인덱스 1번부터 마지막 하나 빼고
+
+// const checkMiddleSeat = function (seat) {
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') {
+//     console.log('Your got the middle seat');
+//   } else {
+//     console.log('You got lucky!');
+//   }
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+
+// //Fix capitalization in name
+
+// const passenger = 'jOnAS';
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// //check email
+
+// const email = 'hello@jonas.io';
+// const loginEmail = ' Hello@Jonas.Io \n';
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+
+// //replacing
+// const priceGB = '288,97%';
+// const priceUS = priceGB.replace('%', '$').replace(',', '.');
+// console.log(priceGB, priceUS);
+
+// const announcement =
+//   'all passengers come to boarding door 23. Boarding door 23!';
+// console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replaceAll(/door/g, 'gate')); //regular expressions
+
+//Booleans
+
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('part of the New Airbus Family');
+}
+
+//practice exercise
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('you are not allowed on board');
+  } else {
+    console.log('welcome aboard!');
+  }
+};
+
+checkBaggage('I have a laptop, some food and a pocket Knife');
+checkBaggage('Socks and Camera');
+checkBaggage('God some snacks and a gun for protection');
