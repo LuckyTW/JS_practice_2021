@@ -572,3 +572,46 @@ const checkBaggage = function (items) {
 checkBaggage('I have a laptop, some food and a pocket Knife');
 checkBaggage('Socks and Camera');
 checkBaggage('God some snacks and a gun for protection');
+
+console.log('a + very +nice + string'.split('+'));
+
+const [firstName, lastName] = 'Jonas Lucky'.split(' ');
+console.log(firstName, lastName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica and smith davis');
+
+//padding
+const message = 'go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+console.log('Lucky'.padStart(25, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(4514597981234));
+maskCreditCard(1239487123958612895);
+
+//repeat
+
+const message2 = 'bad weather ... all departure delayed..';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`there are ${n} planes in line ${''.repeat(n)}`);
+};
+
+planesInLine(5);
