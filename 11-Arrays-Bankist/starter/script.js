@@ -65,12 +65,73 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
+/////////////////////////////////////////////////
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+//SLICE
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2));
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -2));
+console.log(arr.slice());
+console.log([...arr]);
+
+//SPLICE
+// console.log(arr.splice(2));
+arr.splice(-1);
+arr.splice(1, 2); // position 1에서 2개를 삭제
+console.log(arr);
+
+//REVERSE
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+// mutable
+
+//CONCAT
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]); //선호의 차이
+
+//JOIN
+console.log(letters.join(' - '));
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: you deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+  }
+}
+
+//forEach => 멈출수 있는 방법이 없음. break 와 continue 사용 불가
+
+console.log('-----------------------------');
+movements.forEach(function (movement, i, array) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: you deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+  }
+});
+
+//forEach with Map and Set
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
 
-/////////////////////////////////////////////////
+const currenciesUniq = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUniq);
+currenciesUniq.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`); // 어차피 uniq한 밸류라 key값이 의미가 없음. 그냥 요식행위
+});
