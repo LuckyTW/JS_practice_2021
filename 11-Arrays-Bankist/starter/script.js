@@ -185,6 +185,21 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //add movement
+    currentAccount.movements.push(amount);
+
+    //Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -472,3 +487,18 @@ GOOD LUCK 😀
 
 // const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(account);
+
+//////////////////////////////////////////////////////////////////////////////
+
+console.log(movements);
+
+//Some
+const anyDeposits = movements.some(mov => mov > 50000);
+console.log(anyDeposits); //includes 메소드와 거의 동일. 배열 중에서 컨디션에 맞는게 하나라도 있으면 true를 리턴
+
+//Every
+console.log(account4.movements.every(mov => mov > 0)); //모든 요소가 조건을 충족할 경우에만 true리턴
+
+//separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
