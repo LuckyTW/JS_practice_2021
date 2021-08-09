@@ -61,10 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -222,6 +224,14 @@ btnClose.addEventListener('click', function (e) {
 
 // console.log(containerMovements.innerHTML);
 // console.log(accounts);
+
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -490,15 +500,77 @@ GOOD LUCK 😀
 
 //////////////////////////////////////////////////////////////////////////////
 
-console.log(movements);
+// console.log(movements);
 
-//Some
-const anyDeposits = movements.some(mov => mov > 50000);
-console.log(anyDeposits); //includes 메소드와 거의 동일. 배열 중에서 컨디션에 맞는게 하나라도 있으면 true를 리턴
+// //Some
+// const anyDeposits = movements.some(mov => mov > 50000);
+// console.log(anyDeposits); //includes 메소드와 거의 동일. 배열 중에서 컨디션에 맞는게 하나라도 있으면 true를 리턴
 
-//Every
-console.log(account4.movements.every(mov => mov > 0)); //모든 요소가 조건을 충족할 경우에만 true리턴
+// //Every
+// console.log(account4.movements.every(mov => mov > 0)); //모든 요소가 조건을 충족할 경우에만 true리턴
 
-//separate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
+// //separate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// const arr = [[1, 2, 3], [3, 4, 5], 7, 8];
+// console.log(arr.flat());
+
+// const arrDeep = [[[1, 2], 3], [3, [4, 5]], 7, 8];
+// console.log(arrDeep.flat(2)); // flat은 한 레벨 깊이만 들어갈 수 있음
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+
+// //flat
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+
+// const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance);
+
+// const overalBalanceShort = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalanceShort);
+
+// //flatMap
+// const overalBalance2 = accounts
+//   .flatMap(acc => acc.movements) //flatMap도 only goes one level deep
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance2);
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const arr = [1, 2, 3, 4, 5, 6];
+console.log(new Array(1, 2, 3, 4, 5, 6));
+
+const x = new Array(7); // [7]를 리턴하는 게 아니라, [empty x 7]를 리턴
+console.log(x);
+console.log(x.map(e => 5));
+
+x.fill(1);
+x.fill(1, 3); // 두번째 인자가 있는경우, 해당 인덱스부터 채워줌// 세번째 인자 있는 경우, slice처럼 두번째~세번째 채워줌
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+//Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => el.textContent.replace('€', '')
+  );
+
+  console.log(movementUI);
+});
