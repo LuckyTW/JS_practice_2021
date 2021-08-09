@@ -545,32 +545,59 @@ GOOD LUCK 😀
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const arr = [1, 2, 3, 4, 5, 6];
-console.log(new Array(1, 2, 3, 4, 5, 6));
+// const arr = [1, 2, 3, 4, 5, 6];
+// console.log(new Array(1, 2, 3, 4, 5, 6));
 
-const x = new Array(7); // [7]를 리턴하는 게 아니라, [empty x 7]를 리턴
-console.log(x);
-console.log(x.map(e => 5));
+// const x = new Array(7); // [7]를 리턴하는 게 아니라, [empty x 7]를 리턴
+// console.log(x);
+// console.log(x.map(e => 5));
 
-x.fill(1);
-x.fill(1, 3); // 두번째 인자가 있는경우, 해당 인덱스부터 채워줌// 세번째 인자 있는 경우, slice처럼 두번째~세번째 채워줌
-console.log(x);
+// x.fill(1);
+// x.fill(1, 3); // 두번째 인자가 있는경우, 해당 인덱스부터 채워줌// 세번째 인자 있는 경우, slice처럼 두번째~세번째 채워줌
+// console.log(x);
 
-arr.fill(23, 2, 6);
-console.log(arr);
+// arr.fill(23, 2, 6);
+// console.log(arr);
 
-//Array.from
-const y = Array.from({ length: 7 }, () => 1);
-console.log(y);
+// //Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
 
-const z = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(z);
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z);
 
-labelBalance.addEventListener('click', function () {
-  const movementUI = Array.from(
-    document.querySelectorAll('.movements__value'),
-    el => el.textContent.replace('€', '')
+// labelBalance.addEventListener('click', function () {
+//   const movementUI = Array.from(
+//     document.querySelectorAll('.movements__value'),
+//     el => el.textContent.replace('€', '')
+//   );
+
+//   console.log(movementUI);
+// });
+
+const sums = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
   );
 
-  console.log(movementUI);
-});
+console.log(sums);
+
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return titleCase;
+};
+
+console.log(convertTitleCase('this is a nice title'));
