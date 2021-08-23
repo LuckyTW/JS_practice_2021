@@ -251,3 +251,59 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+console.log(0.1 + 0.2);
+
+//conversion
+console.log(Number('23'));
+console.log(+'23');
+
+//parsing
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parseInt('e34'));
+console.log(Number.parseFloat('2.5rem'));
+
+console.log(Number.isNaN(20));
+
+//checking if value is number
+console.log(Number.isFinite(20));
+
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(Math.max(5, 19, '23', 2));
+console.log(Math.min(5, 19, '23', 2));
+
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+//주사위 던지기
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+const randomInt = (min, max) =>
+  Math.trunc(Math.random() * (max - min) + 1) + min;
+console.log(randomInt(10, 20));
+
+//rounding integers
+console.log(Math.trunc(23.3));
+console.log(Math.round(23.3));
+console.log(Math.round(23.9));
+
+console.log(Math.ceil(23.3));
+console.log(Math.floor(23.2));
+
+//rounding decimals
+console.log((2.7).toFixed(0)); // 문자열을 반환함
+console.log(+(2.345).toFixed(2));
+
+//remainder operator
+console.log(5 % 2);
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(11));
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(1729347129384719258791287459281347n);
+
+console.log(932140127349821734987n * 12349816235981234n);
