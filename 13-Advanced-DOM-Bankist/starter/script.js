@@ -7,6 +7,12 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const nav = document.querySelector('.nav');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -32,61 +38,200 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+btnScrollTo.addEventListener('click', () =>
+  section1.scrollIntoView({ behavior: 'smooth' })
+);
+
+//////////////////////////////////////////////////////////////////
+//page navigation
+
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  console.log(e.target);
+
+  //Matching
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    // console.log(id);
+
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+//Tabbed components
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  if (!clicked) return;
+
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  clicked.classList.add('operations__tab--active');
+
+  //active content area
+  console.log(clicked.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+//Menu fade animation
+
+const handleHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    // console.log(link);
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
+
 //////////////////////////////////////////////////////////////////
 
-// console.log(document.documentElement);
-// console.log(document.head);
-// console.log(document.body);
+// // console.log(document.documentElement);
+// // console.log(document.head);
+// // console.log(document.body);
 
-//selecting elements
-const header = document.querySelector('.header');
-const allSelections = document.querySelectorAll('.section');
-console.log(allSelections);
+// //selecting elements
+// const header = document.querySelector('.header');
+// const allSelections = document.querySelectorAll('.section');
+// console.log(allSelections);
 
-document.getElementById('section--1');
-const allButtons = document.getElementsByTagName('button');
-console.log(allButtons);
+// document.getElementById('section--1');
+// const allButtons = document.getElementsByTagName('button');
+// console.log(allButtons);
 
-// creating and inserting elements
+// // creating and inserting elements
 
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent = 'hi this is cookie';
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent = 'hi this is cookie';
 
-message.innerHTML =
-  'Hi I am Lucky. <button class="btn btn--close-cookie">Got it!</ button>';
+// message.innerHTML =
+//   'Hi I am Lucky. <button class="btn btn--close-cookie">Got it!</ button>';
 
-// header.prepend(message);
-header.append(message);
-// header.append(message.cloneNode(true));
+// // header.prepend(message);
+// header.append(message);
+// // header.append(message.cloneNode(true));
 
-// header.before(message);
-// header.after(message);
+// // header.before(message);
+// // header.after(message);
 
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', () => message.remove());
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', () => message.remove());
 
-//styles
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
+// //styles
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '120%';
 
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
-//attributes
-const logo = document.querySelector('.nav__logo');
-console.log(logo.alt);
-console.log(logo.src);
+// //attributes
+// const logo = document.querySelector('.nav__logo');
+// console.log(logo.alt);
+// console.log(logo.src);
 
-console.log(logo.getAttribute('designer'));
-logo.setAttribute('company', 'Bankist');
+// console.log(logo.getAttribute('designer'));
+// logo.setAttribute('company', 'Bankist');
 
-//classes
-logo.classList.add('c', 'j');
-logo.classList.remove('c', 'j');
-logo.classList.toggle('c', 'j');
-logo.classList.contains('c', 'j');
+// //classes
+// // logo.classList.add('c', 'j');
+// // logo.classList.remove('c', 'j');
+// // logo.classList.toggle('c', 'j');
+// // logo.classList.contains('c', 'j');
+
+// const btnScrollTo = document.querySelector('.btn--scroll-to');
+// const section1 = document.querySelector('#section--1');
+
+// btnScrollTo.addEventListener('click', () =>
+//   section1.scrollIntoView({ behavior: 'smooth' })
+// );
+
+// const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('great!');
+
+  h1.removeEventListener('mouseenter', alertH1);
+};
+
+// h1.addEventListener('mouseenter', alertH1);
+
+//creating random color
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+// console.log(randomColor(0, 255));
+
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('LINK', e.target);
+// });
+
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('CONTAINER', e.target);
+// });
+
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('NAV', e.target);
+// });
+
+// const h1 = document.querySelector('h1');
+
+// //going downwards: child
+
+// console.log(h1.querySelectorAll('.highlight'));
+
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'orangered';
+
+// //going upwards: parent
+// console.log(h1.parentElement);
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// //going sideways: siblings
+
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// console.log(h1.parentElement.children);
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
